@@ -85,30 +85,33 @@ Finally add this JavaScript to display the images in your beautiful gallery:
 
 ```html
 <script>
-document.getElementById('links').onclick = function (event) {
-  event = event || window.event;
-  var target = event.target || event.srcElement,
-    link = target.src ? target.parentNode : target,
-    options = {index: link, event: event},
-    links = this.getElementsByTagName('a');
-  blueimp.Gallery(links, options);
-};
+$(function() {
+  document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+      link = target.src ? target.parentNode : target,
+      options = {index: link, event: event},
+      links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+  };
+});
 </script>
 ```
 
 or CoffeeScript if you want to add the script as an asset:
 
 ```coffeescript
-document.getElementById("links").onclick = (event) ->
-  event = event or window.event
-  target = event.target or event.srcElement
-  link = (if target.src then target.parentNode else target)
-  options =
-    index: link
-    event: event
+$ ->
+  document.getElementById("links").onclick = (event) ->
+    event = event or window.event
+    target = event.target or event.srcElement
+    link = (if target.src then target.parentNode else target)
+    options =
+      index: link
+      event: event
 
-  links = @getElementsByTagName("a")
-  blueimp.Gallery links, options
+    links = @getElementsByTagName("a")
+    blueimp.Gallery links, options
 ```
 
 ### Carousel
@@ -130,22 +133,25 @@ And add this JavaScript:
 
 ```html
 <script>
-blueimp.Gallery(
-  document.getElementById('links').getElementsByTagName('a'),
-  {
-    container: '#blueimp-gallery-carousel',
-    carousel: true
-  }
-);
+$(function() {
+  blueimp.Gallery(
+    document.getElementById('links').getElementsByTagName('a'),
+    {
+      container: '#blueimp-gallery-carousel',
+      carousel: true
+    }
+  );
+});
 </script>
 ```
 
 or CoffeeScript if you want to add the script as an asset:
 
 ```coffeescript
-blueimp.Gallery document.getElementById("links").getElementsByTagName("a"),
-  container: "#blueimp-gallery-carousel"
-  carousel: true
+$ ->
+  blueimp.Gallery document.getElementById("links").getElementsByTagName("a"),
+    container: "#blueimp-gallery-carousel"
+    carousel: true
 ```
 
 ## More Features
